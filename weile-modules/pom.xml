@@ -13,6 +13,7 @@
         <module>weile-gen</module>
         <module>weile-job</module>
         <module>weile-file</module>
+        <module>weile-user</module>
     </modules>
 
     <artifactId>weile-modules</artifactId>
