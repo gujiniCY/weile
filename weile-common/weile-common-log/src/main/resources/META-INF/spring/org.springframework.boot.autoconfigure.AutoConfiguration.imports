@@ -1,0 +1,2 @@
+run.weile.common.log.service.AsyncLogService
+run.weile.common.log.aspect.LogAspect

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>run.weile</groupId>
+        <artifactId>weile</artifactId>
+        <version>3.6.2</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <modules>
+        <module>weile-common-log</module>
+        <module>weile-common-core</module>
+        <module>weile-common-redis</module>
+        <module>weile-common-seata</module>
+        <module>weile-common-swagger</module>
+        <module>weile-common-security</module>
+        <module>weile-common-datascope</module>
+        <module>weile-common-datasource</module>
+    </modules>
+
+    <artifactId>weile-common</artifactId>
+    <packaging>pom</packaging>
+
+    <description>
+        weile-common通用模块
+    </description>
+
+</project>
