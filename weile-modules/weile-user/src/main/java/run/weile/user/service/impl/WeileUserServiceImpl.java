@@ -1,13 +1,12 @@
 package run.weile.user.service.impl;
 
+import java.util.List;
+import run.weile.common.core.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import run.weile.common.core.utils.DateUtils;
-import run.weile.user.domain.WeileUser;
 import run.weile.user.mapper.WeileUserMapper;
+import run.weile.user.domain.WeileUser;
 import run.weile.user.service.IWeileUserService;
-
-import java.util.List;
 
 /**
  * 用户管理Service业务层处理
@@ -16,7 +15,8 @@ import java.util.List;
  * @date 2023-05-10
  */
 @Service
-public class WeileUserServiceImpl implements IWeileUserService {
+public class WeileUserServiceImpl implements IWeileUserService
+{
     @Autowired
     private WeileUserMapper weileUserMapper;
 
@@ -27,7 +27,8 @@ public class WeileUserServiceImpl implements IWeileUserService {
      * @return 用户管理
      */
     @Override
-    public WeileUser selectWeileUserByUserId(Long userId) {
+    public WeileUser selectWeileUserByUserId(Long userId)
+    {
         return weileUserMapper.selectWeileUserByUserId(userId);
     }
 
@@ -38,7 +39,8 @@ public class WeileUserServiceImpl implements IWeileUserService {
      * @return 用户管理
      */
     @Override
-    public List<WeileUser> selectWeileUserList(WeileUser weileUser) {
+    public List<WeileUser> selectWeileUserList(WeileUser weileUser)
+    {
         return weileUserMapper.selectWeileUserList(weileUser);
     }
 
@@ -49,7 +51,8 @@ public class WeileUserServiceImpl implements IWeileUserService {
      * @return 结果
      */
     @Override
-    public int insertWeileUser(WeileUser weileUser) {
+    public int insertWeileUser(WeileUser weileUser)
+    {
         weileUser.setCreateTime(DateUtils.getNowDate());
         return weileUserMapper.insertWeileUser(weileUser);
     }
@@ -61,7 +64,8 @@ public class WeileUserServiceImpl implements IWeileUserService {
      * @return 结果
      */
     @Override
-    public int updateWeileUser(WeileUser weileUser) {
+    public int updateWeileUser(WeileUser weileUser)
+    {
         weileUser.setUpdateTime(DateUtils.getNowDate());
         return weileUserMapper.updateWeileUser(weileUser);
     }
@@ -73,7 +77,8 @@ public class WeileUserServiceImpl implements IWeileUserService {
      * @return 结果
      */
     @Override
-    public int deleteWeileUserByUserIds(Long[] userIds) {
+    public int deleteWeileUserByUserIds(Long[] userIds)
+    {
         return weileUserMapper.deleteWeileUserByUserIds(userIds);
     }
 
@@ -84,7 +89,8 @@ public class WeileUserServiceImpl implements IWeileUserService {
      * @return 结果
      */
     @Override
-    public int deleteWeileUserByUserId(Long userId) {
+    public int deleteWeileUserByUserId(Long userId)
+    {
         return weileUserMapper.deleteWeileUserByUserId(userId);
     }
 }

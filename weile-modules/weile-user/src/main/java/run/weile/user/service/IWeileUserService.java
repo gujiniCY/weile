@@ -1,8 +1,7 @@
 package run.weile.user.service;
 
-import run.weile.user.domain.WeileUser;
-
 import java.util.List;
+import run.weile.user.domain.WeileUser;
 
 /**
  * 用户管理Service接口

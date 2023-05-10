@@ -1,8 +1,7 @@
 package run.weile.user.mapper;
 
-import run.weile.user.domain.WeileUser;
-
 import java.util.List;
+import run.weile.user.domain.WeileUser;
 
 /**
  * 用户管理Mapper接口
@@ -10,7 +9,8 @@ import java.util.List;
  * @author songhaozhi
  * @date 2023-05-10
  */
-public interface WeileUserMapper {
+public interface WeileUserMapper
+{
     /**
      * 查询用户管理
      *

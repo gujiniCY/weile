@@ -18,6 +18,7 @@ public class WeileUser extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 用户ID */
+    @Excel(name = "用户ID")
     private Long userId;
 
     /** 小程序openId */
@@ -228,24 +229,24 @@ public class WeileUser extends BaseEntity
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("userId", getUserId())
-            .append("miniOpenId", getMiniOpenId())
-            .append("appOpenId", getAppOpenId())
-            .append("unionId", getUnionId())
-            .append("country", getCountry())
-            .append("province", getProvince())
-            .append("city", getCity())
-            .append("language", getLanguage())
-            .append("nikeName", getNikeName())
-            .append("avatarUrl", getAvatarUrl())
-            .append("phone", getPhone())
-            .append("email", getEmail())
-            .append("gender", getGender())
-            .append("lastLoginTime", getLastLoginTime())
-            .append("lastLoginIp", getLastLoginIp())
-            .append("createTime", getCreateTime())
-            .append("updateTime", getUpdateTime())
-            .append("delFlag", getDelFlag())
-            .toString();
+                .append("userId", getUserId())
+                .append("miniOpenId", getMiniOpenId())
+                .append("appOpenId", getAppOpenId())
+                .append("unionId", getUnionId())
+                .append("country", getCountry())
+                .append("province", getProvince())
+                .append("city", getCity())
+                .append("language", getLanguage())
+                .append("nikeName", getNikeName())
+                .append("avatarUrl", getAvatarUrl())
+                .append("phone", getPhone())
+                .append("email", getEmail())
+                .append("gender", getGender())
+                .append("lastLoginTime", getLastLoginTime())
+                .append("lastLoginIp", getLastLoginIp())
+                .append("createTime", getCreateTime())
+                .append("updateTime", getUpdateTime())
+                .append("delFlag", getDelFlag())
+                .toString();
     }
 }
