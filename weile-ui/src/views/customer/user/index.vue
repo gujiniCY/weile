@@ -1,66 +1,10 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch">
       <el-form-item label="用户ID" prop="userId">
         <el-input
             v-model="queryParams.userId"
             placeholder="请输入用户ID"
-            clearable
-            @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="小程序openId" prop="miniOpenId">
-        <el-input
-            v-model="queryParams.miniOpenId"
-            placeholder="请输入小程序openId"
-            clearable
-            @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="AppOpenId" prop="appOpenId">
-        <el-input
-            v-model="queryParams.appOpenId"
-            placeholder="请输入AppOpenId"
-            clearable
-            @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="unionid" prop="unionId">
-        <el-input
-            v-model="queryParams.unionId"
-            placeholder="请输入unionid"
-            clearable
-            @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="所在国家" prop="country">
-        <el-input
-            v-model="queryParams.country"
-            placeholder="请输入所在国家"
-            clearable
-            @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="所在省份" prop="province">
-        <el-input
-            v-model="queryParams.province"
-            placeholder="请输入所在省份"
-            clearable
-            @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="所在城市" prop="city">
-        <el-input
-            v-model="queryParams.city"
-            placeholder="请输入所在城市"
-            clearable
-            @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="所用的语言 en 英文 - zh_CN 简体中文 -zh_TW 繁体中文" prop="language">
-        <el-input
-            v-model="queryParams.language"
-            placeholder="请输入所用的语言 en 英文 - zh_CN 简体中文 -zh_TW 繁体中文"
             clearable
             @keyup.enter.native="handleQuery"
         />
@@ -73,14 +17,6 @@
             @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="头像地址" prop="avatarUrl">
-        <el-input
-            v-model="queryParams.avatarUrl"
-            placeholder="请输入头像地址"
-            clearable
-            @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
       <el-form-item label="手机号码" prop="phone">
         <el-input
             v-model="queryParams.phone"
@@ -89,41 +25,17 @@
             @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="邮箱" prop="email">
-        <el-input
-            v-model="queryParams.email"
-            placeholder="请输入邮箱"
-            clearable
-            @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="性别 0：未知、1：男、2：女" prop="gender">
+      <el-form-item label="性别" prop="gender">
         <el-input
             v-model="queryParams.gender"
-            placeholder="请输入性别 0：未知、1：男、2：女"
-            clearable
-            @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="最近一次登录时间" prop="lastLoginTime">
-        <el-date-picker clearable
-                        v-model="queryParams.lastLoginTime"
-                        type="date"
-                        value-format="yyyy-MM-dd"
-                        placeholder="请选择最近一次登录时间">
-        </el-date-picker>
-      </el-form-item>
-      <el-form-item label="最近一次登录IP地址" prop="lastLoginIp">
-        <el-input
-            v-model="queryParams.lastLoginIp"
-            placeholder="请输入最近一次登录IP地址"
+            placeholder="请输入性别"
             clearable
             @keyup.enter.native="handleQuery"
         />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
+        <el-button type="primary" icon="Search" @click="handleQuery">搜索</el-button>
+        <el-button icon="Refresh"  @click="resetQuery">重置</el-button>
       </el-form-item>
     </el-form>
 
@@ -132,8 +44,8 @@
         <el-button
             type="primary"
             plain
-            icon="el-icon-plus"
-            size="mini"
+            icon="Plus"
+            size="small"
             @click="handleAdd"
             v-hasPermi="['customer:user:add']"
         >新增</el-button>
@@ -142,8 +54,8 @@
         <el-button
             type="success"
             plain
-            icon="el-icon-edit"
-            size="mini"
+            icon="Edit"
+            size="small"
             :disabled="single"
             @click="handleUpdate"
             v-hasPermi="['customer:user:edit']"
@@ -153,8 +65,8 @@
         <el-button
             type="danger"
             plain
-            icon="el-icon-delete"
-            size="mini"
+            icon="Delete"
+            size="small"
             :disabled="multiple"
             @click="handleDelete"
             v-hasPermi="['customer:user:remove']"
@@ -164,8 +76,8 @@
         <el-button
             type="warning"
             plain
-            icon="el-icon-download"
-            size="mini"
+            icon="Download"
+            size="small"
             @click="handleExport"
             v-hasPermi="['customer:user:export']"
         >导出</el-button>
@@ -176,18 +88,18 @@
     <el-table v-loading="loading" :data="userList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="用户ID" align="center" prop="userId" />
+      <el-table-column label="手机号码" align="center" prop="phone" />
       <el-table-column label="小程序openId" align="center" prop="miniOpenId" />
       <el-table-column label="AppOpenId" align="center" prop="appOpenId" />
       <el-table-column label="unionid" align="center" prop="unionId" />
       <el-table-column label="所在国家" align="center" prop="country" />
       <el-table-column label="所在省份" align="center" prop="province" />
       <el-table-column label="所在城市" align="center" prop="city" />
-      <el-table-column label="所用的语言 en 英文 - zh_CN 简体中文 -zh_TW 繁体中文" align="center" prop="language" />
+      <el-table-column label="语言" align="center" prop="language" />
       <el-table-column label="用户昵称" align="center" prop="nikeName" />
       <el-table-column label="头像地址" align="center" prop="avatarUrl" />
-      <el-table-column label="手机号码" align="center" prop="phone" />
       <el-table-column label="邮箱" align="center" prop="email" />
-      <el-table-column label="性别 0：未知、1：男、2：女" align="center" prop="gender" />
+      <el-table-column label="性别" align="center" prop="gender" />
       <el-table-column label="最近一次登录时间" align="center" prop="lastLoginTime" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.lastLoginTime, '{y}-{m}-{d}') }}</span>
@@ -197,14 +109,14 @@
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
-              size="mini"
+              size="small"
               type="text"
               icon="el-icon-edit"
               @click="handleUpdate(scope.row)"
               v-hasPermi="['customer:user:edit']"
           >修改</el-button>
           <el-button
-              size="mini"
+              size="small"
               type="text"
               icon="el-icon-delete"
               @click="handleDelete(scope.row)"
@@ -222,11 +134,10 @@
         @pagination="getList"
     />
 
-    <!-- 添加或修改用户管理对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+    <el-dialog v-model="open" :title="title">
+      <el-form :model="form">
         <el-form-item label="小程序openId" prop="miniOpenId">
-          <el-input v-model="form.miniOpenId" placeholder="请输入小程序openId" />
+          <span>{{form.miniOpenId}}</span>
         </el-form-item>
         <el-form-item label="AppOpenId" prop="appOpenId">
           <el-input v-model="form.appOpenId" placeholder="请输入AppOpenId" />
@@ -243,7 +154,7 @@
         <el-form-item label="所在城市" prop="city">
           <el-input v-model="form.city" placeholder="请输入所在城市" />
         </el-form-item>
-        <el-form-item label="所用的语言 en 英文 - zh_CN 简体中文 -zh_TW 繁体中文" prop="language">
+        <el-form-item label="语言" prop="language">
           <el-input v-model="form.language" placeholder="请输入所用的语言 en 英文 - zh_CN 简体中文 -zh_TW 繁体中文" />
         </el-form-item>
         <el-form-item label="用户昵称" prop="nikeName">
@@ -276,15 +187,20 @@
           <el-input v-model="form.delFlag" placeholder="请输入删除标志" />
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
-      </div>
+      <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="open = false">Cancel</el-button>
+        <el-button type="primary" @click="open = false">
+          Confirm
+        </el-button>
+      </span>
+      </template>
     </el-dialog>
+
   </div>
 </template>
 
-<script>
+<script >
 import { listUser, getUser, delUser, addUser, updateUser } from "@/api/customer/user";
 
 export default {
@@ -396,6 +312,7 @@ export default {
     },
     /** 新增按钮操作 */
     handleAdd() {
+      console.log("123")
       this.reset();
       this.open = true;
       this.title = "添加用户管理";
