@@ -1,1 +1,2 @@
 run.weile.common.core.utils.SpringUtils
+run.weile.common.core.config.MybatisPlusConfig
