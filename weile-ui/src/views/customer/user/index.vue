@@ -180,7 +180,7 @@
 </template>
 
 <script setup name="CustomerUser">
-import {addUser, delUser, getUser, listUser, updateUser} from "@/api/customer/user";
+import {getUser, listUser} from "@/api/customer/user";
 
 const { proxy } = getCurrentInstance();
 const {wx_use_language} = proxy.useDict("wx_use_language");
@@ -245,6 +245,11 @@ function resetQuery() {
   proxy.resetForm("queryRef");
   handleQuery();
 }
-
+/** 导出按钮操作 */
+function handleExport() {
+  proxy.download("customer/user/export", {
+    ...queryParams.value,
+  }, `user_${new Date().getTime()}.xlsx`);
+}
 getList();
 </script>
