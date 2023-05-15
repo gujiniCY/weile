@@ -42,8 +42,8 @@
             <if test="language != null  and language != ''"> and language = #{language}</if>
             <if test="nikeName != null  and nikeName != ''"> and nike_name like concat('%', #{nikeName}, '%')</if>
             <if test="avatarUrl != null  and avatarUrl != ''"> and avatar_url = #{avatarUrl}</if>
-            <if test="phone != null  and phone != ''"> and phone = #{phone}</if>
-            <if test="email != null  and email != ''"> and email = #{email}</if>
+            <if test="phone != null  and phone != ''"> and phone like concat('%', #{phone}, '%')</if>
+            <if test="email != null  and email != ''"> and email like concat('%', #{email}, '%')</if>
             <if test="gender != null "> and gender = #{gender}</if>
             <if test="lastLoginTime != null "> and last_login_time = #{lastLoginTime}</if>
             <if test="lastLoginIp != null  and lastLoginIp != ''"> and last_login_ip = #{lastLoginIp}</if>
