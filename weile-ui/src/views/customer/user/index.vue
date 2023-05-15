@@ -25,13 +25,20 @@
             @keyup.enter="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="性别" prop="gender">
-        <el-input
+      <el-form-item label="性别" prop="status">
+        <el-select
             v-model="queryParams.gender"
-            placeholder="请输入性别"
+            placeholder="性别"
             clearable
-            @keyup.enter="handleQuery"
-        />
+            style="width: 240px"
+        >
+          <el-option
+              v-for="dict in sys_user_sex"
+              :key="dict.value"
+              :label="dict.label"
+              :value="dict.value"
+          />
+        </el-select>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="Search" @click="handleQuery">搜索</el-button>
@@ -142,19 +149,19 @@
           </el-col>
           <el-col :span="12">
             <el-form-item label="小程序openId" prop="miniOpenId">
-              <span v-if="form.miniOpenId != null">{{ form.miniOpenId }}</span>
+              <el-tag v-if="form.miniOpenId != null">{{ form.miniOpenId }}</el-tag>
               <el-tag v-else>暂无</el-tag>
             </el-form-item>
           </el-col>
 
           <el-col :span="12">
             <el-form-item label="AppOpenId" prop="appOpenId">
-              <span>{{ form.appOpenId }}</span>
+              <el-tag>{{ form.appOpenId }}</el-tag>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="unionid" prop="unionId">
-              <span>{{ form.unionId }}</span>
+              <el-tag>{{ form.unionId }}</el-tag>
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -183,7 +190,7 @@
 import {getUser, listUser} from "@/api/customer/user";
 
 const { proxy } = getCurrentInstance();
-const {wx_use_language} = proxy.useDict("wx_use_language");
+const {wx_use_language,sys_user_sex} = proxy.useDict("wx_use_language","sys_user_sex");
 
 const userList = ref([]);
 const open = ref(false);
