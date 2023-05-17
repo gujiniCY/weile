@@ -14,6 +14,7 @@
         <module>weile-job</module>
         <module>weile-file</module>
         <module>weile-user</module>
+        <module>weile-logistics</module>
     </modules>
 
     <artifactId>weile-modules</artifactId>

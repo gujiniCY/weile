@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="run.weile.logistics.mapper.WeileCourierCompanyMapper">
+    <resultMap type="WeileCourierCompany" id="WeileCourierCompanyResult">
+        <result property="id" column="id"/>
+        <result property="courierCompanyName" column="courier_company_name"/>
+        <result property="courierCompanyCode" column="courier_company_code"/>
+        <result property="url" column="url"/>
+        <result property="status" column="status"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+    <sql id="selectWeileCourierCompanyVo">
+        select id,
+               courier_company_name,
+               courier_company_code,
+               url,
+               status,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               del_flag
+        from weile_courier_company
+    </sql>
+
+    <select id="selectWeileCourierCompanyList" parameterType="WeileCourierCompany"
+            resultMap="WeileCourierCompanyResult">
+        <include refid="selectWeileCourierCompanyVo"/>
+        <where>
+            <if test="courierCompanyName != null  and courierCompanyName != ''">
+                and courier_company_name like concat('%', #{courierCompanyName}, '%')
+            </if>
+            <if test="courierCompanyCode != null  and courierCompanyCode != ''">
+                and courier_company_code like concat('%', #{courierCompanyCode}, '%')
+            </if>
+            <if test="url != null  and url != ''">
+                and url = #{url}
+            </if>
+            <if test="status != null  and status != ''">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectWeileCourierCompanyById" parameterType="Long" resultMap="WeileCourierCompanyResult">
+        <include refid="selectWeileCourierCompanyVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertWeileCourierCompany" parameterType="WeileCourierCompany">
+        insert into weile_courier_company
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="courierCompanyName != null">
+                courier_company_name,
+            </if>
+            <if test="courierCompanyCode != null">
+                courier_company_code,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="courierCompanyName != null">
+                #{courierCompanyName},
+            </if>
+            <if test="courierCompanyCode != null">
+                #{courierCompanyCode},
+            </if>
+            <if test="url != null">
+                #{url},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="createBy != null">
+                #{createBy},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+            <if test="remark != null">
+                #{remark},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateWeileCourierCompany" parameterType="WeileCourierCompany">
+        update weile_courier_company
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="courierCompanyName != null">
+                courier_company_name = #{courierCompanyName},
+            </if>
+            <if test="courierCompanyCode != null">
+                courier_company_code = #{courierCompanyCode},
+            </if>
+            <if test="url != null">
+                url = #{url},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteWeileCourierCompanyById" parameterType="Long">
+        delete
+        from weile_courier_company
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteWeileCourierCompanyByIds" parameterType="String">
+        delete
+        from weile_courier_company where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
